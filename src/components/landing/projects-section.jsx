@@ -102,7 +102,7 @@ function ProjectsSection() {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <div className="relative aspect-video overflow-hidden bg-muted">
+                    <div className="relative aspect-square overflow-hidden bg-muted">
                       <img
                         src={project.thumbnail_url}
                         alt={`${project.title} 썸네일`}
