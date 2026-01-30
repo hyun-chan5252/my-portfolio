@@ -89,59 +89,73 @@ function ProjectsSection() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {projects.map((project) => (
-              <Card
-                key={project.id}
-                className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <a
-                  href={project.detail_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {projects.slice(0, 4).map((project) => (
+                <Card
+                  key={project.id}
+                  className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="relative aspect-video overflow-hidden bg-muted">
-                    <img
-                      src={project.thumbnail_url}
-                      alt={`${project.title} 썸네일`}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
-                        <ExternalLink className="h-6 w-6 text-blue-600" />
+                  <a
+                    href={project.detail_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="relative aspect-video overflow-hidden bg-muted">
+                      <img
+                        src={project.thumbnail_url}
+                        alt={`${project.title} 썸네일`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 rounded-full p-3">
+                          <ExternalLink className="h-6 w-6 text-blue-600" />
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <CardContent className="p-5">
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
-                        {project.title}
-                      </h3>
-                      <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
-                    </div>
+                    <CardContent className="p-5">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                          {project.title}
+                        </h3>
+                        <ExternalLink className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
+                      </div>
 
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
+                      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+                        {project.description}
+                      </p>
 
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech_stack?.map((tech, index) => (
-                        <span
-                          key={index}
-                          className={`px-2.5 py-1 text-xs font-medium rounded-full ${getTechStackColor(tech)}`}
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </a>
-              </Card>
-            ))}
-          </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech_stack?.map((tech, index) => (
+                          <span
+                            key={index}
+                            className={`px-2.5 py-1 text-xs font-medium rounded-full ${getTechStackColor(tech)}`}
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </a>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center">
+              <a
+                href="#/projects"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+              >
+                더보기
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            </div>
+          </>
         )}
       </div>
     </section>
