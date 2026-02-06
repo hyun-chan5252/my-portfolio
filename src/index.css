@@ -1,26 +1,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: hsl(0 0% 100%);
-  --color-foreground: hsl(222.2 84% 4.9%);
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(222.2 84% 4.9%);
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(222.2 84% 4.9%);
-  --color-primary: hsl(222.2 47.4% 11.2%);
-  --color-primary-foreground: hsl(210 40% 98%);
-  --color-secondary: hsl(210 40% 96.1%);
-  --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-  --color-muted: hsl(210 40% 96.1%);
-  --color-muted-foreground: hsl(215.4 16.3% 46.9%);
-  --color-accent: hsl(210 40% 96.1%);
-  --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-  --color-destructive: hsl(0 84.2% 60.2%);
+  /* 다크모드 기반 컬러 팔레트 */
+  --color-background: hsl(222 47% 11%);
+  --color-foreground: hsl(210 40% 98%);
+  --color-card: hsl(222 47% 15%);
+  --color-card-foreground: hsl(210 40% 98%);
+  --color-popover: hsl(222 47% 15%);
+  --color-popover-foreground: hsl(210 40% 98%);
+
+  /* Primary: 골드/머스타드 #ECD06F */
+  --color-primary: hsl(47 78% 68%);
+  --color-primary-foreground: hsl(222 47% 11%);
+
+  /* Secondary: 푸른색 #2779a7 */
+  --color-secondary: hsl(201 63% 40%);
+  --color-secondary-foreground: hsl(210 40% 98%);
+
+  --color-muted: hsl(222 47% 20%);
+  --color-muted-foreground: hsl(215 20% 65%);
+  --color-accent: hsl(222 47% 20%);
+  --color-accent-foreground: hsl(210 40% 98%);
+  --color-destructive: hsl(0 84% 60%);
   --color-destructive-foreground: hsl(210 40% 98%);
-  --color-border: hsl(214.3 31.8% 91.4%);
-  --color-input: hsl(214.3 31.8% 91.4%);
-  --color-ring: hsl(222.2 84% 4.9%);
+  --color-border: hsl(222 47% 25%);
+  --color-input: hsl(222 47% 25%);
+  --color-ring: hsl(47 78% 68%);
   --radius: 0.5rem;
+
+  /* 커스텀 컬러 */
+  --color-gold: #ECD06F;
+  --color-blue-accent: #2779a7;
 }
 
 * {
@@ -46,4 +56,28 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* 형광펜 효과 */
+.highlight-text {
+  background: linear-gradient(180deg, transparent 60%, rgba(236, 208, 111, 0.4) 60%);
+  padding: 0 4px;
+}
+
+/* 스크롤바 스타일 (다크모드) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(222 47% 15%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(222 47% 30%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(47 78% 68%);
 }
