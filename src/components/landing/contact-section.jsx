@@ -133,8 +133,8 @@ function ContactSection({
 
   const getAvatarColor = (name) => {
     const colors = [
-      'bg-[#ECD06F]', 'bg-[#2779a7]', 'bg-emerald-500', 'bg-purple-500',
-      'bg-pink-500', 'bg-cyan-500', 'bg-amber-500', 'bg-rose-500'
+      'bg-[#FFF3B0]', 'bg-[#A8D8EA]', 'bg-emerald-200', 'bg-purple-200',
+      'bg-pink-200', 'bg-cyan-200', 'bg-amber-200', 'bg-rose-200'
     ];
     const index = name ? name.charCodeAt(0) % colors.length : 0;
     return colors[index];
@@ -150,7 +150,7 @@ function ContactSection({
     <section
       id="contact"
       ref={ref}
-      className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted/30"
+      className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#F8FCFD]"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* 섹션 헤더 */}
@@ -160,11 +160,11 @@ function ContactSection({
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#2779a7] text-sm font-medium tracking-widest uppercase mb-2">
+          <p className="text-[#5BA4C9] text-sm font-medium tracking-widest uppercase mb-2">
             Contact
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            연락 <span className="text-[#ECD06F]">&</span> 방명록
+            연락 <span className="text-[#E6B800]">&</span> 방명록
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto">
             궁금한 점이 있으시거나 연락이 필요하시면 아래 연락처로 문의해주세요.
@@ -181,8 +181,8 @@ function ContactSection({
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             {/* 연락처 카드 */}
-            <Card className="bg-gradient-to-br from-[#ECD06F] to-[#2779a7] text-white border-0 overflow-hidden relative">
-              <div className="absolute inset-0 opacity-10">
+            <Card className="bg-gradient-to-br from-[#FFF3B0] to-[#A8D8EA] text-foreground border-0 overflow-hidden relative shadow-lg">
+              <div className="absolute inset-0 opacity-20">
                 <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                   <defs>
                     <pattern id="contactGrid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -194,18 +194,18 @@ function ContactSection({
               </div>
 
               <CardHeader className="relative">
-                <CardTitle className="text-xl">연락처</CardTitle>
+                <CardTitle className="text-xl text-[#333]">연락처</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 relative">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-white/20 rounded-full">
-                    <Mail className="h-5 w-5" />
+                  <div className="p-2 bg-white/50 rounded-full">
+                    <Mail className="h-5 w-5 text-[#5BA4C9]" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/70">Email</p>
+                    <p className="text-xs text-[#666]">Email</p>
                     <a
                       href={`mailto:${email}`}
-                      className="hover:underline text-sm font-medium"
+                      className="hover:underline text-sm font-medium text-[#333]"
                     >
                       {email}
                     </a>
@@ -213,18 +213,18 @@ function ContactSection({
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-white/20 rounded-full">
-                    <MapPin className="h-5 w-5" />
+                  <div className="p-2 bg-white/50 rounded-full">
+                    <MapPin className="h-5 w-5 text-[#E6B800]" />
                   </div>
                   <div>
-                    <p className="text-xs text-white/70">Location</p>
-                    <p className="text-sm font-medium">{location}</p>
+                    <p className="text-xs text-[#666]">Location</p>
+                    <p className="text-sm font-medium text-[#333]">{location}</p>
                   </div>
                 </div>
 
                 {socialButtons.length > 0 && (
-                  <div className="pt-4 border-t border-white/20">
-                    <p className="text-xs text-white/70 mb-3">소셜 미디어</p>
+                  <div className="pt-4 border-t border-white/30">
+                    <p className="text-xs text-[#666] mb-3">소셜 미디어</p>
                     <div className="flex gap-2">
                       {socialButtons.map((item) => (
                         <motion.a
@@ -233,11 +233,11 @@ function ContactSection({
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={item.label}
-                          className="p-2.5 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+                          className="p-2.5 bg-white/50 rounded-full hover:bg-white/80 transition-colors"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <item.icon className="h-5 w-5" />
+                          <item.icon className="h-5 w-5 text-[#333]" />
                         </motion.a>
                       ))}
                     </div>
@@ -247,20 +247,20 @@ function ContactSection({
             </Card>
 
             {/* 방명록 작성 폼 */}
-            <Card className="bg-card border-border">
+            <Card className="bg-white border-gray-100 shadow-lg">
               <CardHeader>
                 <CardTitle className="text-xl text-foreground">방명록 작성</CardTitle>
               </CardHeader>
               <CardContent>
                 {error && (
-                  <div className="mb-4 p-3 bg-destructive/10 text-destructive rounded-lg text-sm border border-destructive/20">
+                  <div className="mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm border border-red-200">
                     {error}
                   </div>
                 )}
 
                 {submitSuccess && (
                   <motion.div
-                    className="mb-4 p-3 bg-emerald-500/10 text-emerald-400 rounded-lg text-sm border border-emerald-500/20"
+                    className="mb-4 p-3 bg-emerald-50 text-emerald-600 rounded-lg text-sm border border-emerald-200"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                   >
@@ -278,7 +278,7 @@ function ContactSection({
                       onChange={handleChange}
                       required
                       placeholder="이름을 입력하세요"
-                      className="bg-muted border-border focus:border-[#ECD06F] focus:ring-[#ECD06F]/20"
+                      className="bg-gray-50 border-gray-200 focus:border-[#A8D8EA] focus:ring-[#A8D8EA]/20"
                     />
                   </div>
 
@@ -290,7 +290,7 @@ function ContactSection({
                       value={formData.organization}
                       onChange={handleChange}
                       placeholder="회사, 학교 등"
-                      className="bg-muted border-border focus:border-[#ECD06F] focus:ring-[#ECD06F]/20"
+                      className="bg-gray-50 border-gray-200 focus:border-[#A8D8EA] focus:ring-[#A8D8EA]/20"
                     />
                   </div>
 
@@ -303,7 +303,7 @@ function ContactSection({
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="이메일 주소"
-                      className="bg-muted border-border focus:border-[#ECD06F] focus:ring-[#ECD06F]/20"
+                      className="bg-gray-50 border-gray-200 focus:border-[#A8D8EA] focus:ring-[#A8D8EA]/20"
                     />
                   </div>
 
@@ -315,7 +315,7 @@ function ContactSection({
                         name="isEmailPublic"
                         checked={formData.isEmailPublic}
                         onChange={handleChange}
-                        className="h-4 w-4 rounded border-border bg-muted accent-[#ECD06F]"
+                        className="h-4 w-4 rounded border-gray-300 accent-[#5BA4C9]"
                       />
                       <Label htmlFor="isEmailPublic" className="text-sm text-muted-foreground">
                         이메일 공개
@@ -333,14 +333,14 @@ function ContactSection({
                       required
                       rows={4}
                       placeholder="방명록에 남길 메시지를 작성해주세요."
-                      className="bg-muted border-border focus:border-[#ECD06F] focus:ring-[#ECD06F]/20"
+                      className="bg-gray-50 border-gray-200 focus:border-[#A8D8EA] focus:ring-[#A8D8EA]/20"
                     />
                   </div>
 
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button
                       type="submit"
-                      className="w-full bg-[#ECD06F] hover:bg-[#ECD06F]/90 text-background font-semibold"
+                      className="w-full bg-[#FFF3B0] hover:bg-[#FFE566] text-[#333] font-semibold shadow-md"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -370,20 +370,20 @@ function ContactSection({
           >
             <div className="space-y-4">
               <h3 className="text-xl font-semibold text-foreground">
-                방명록 <span className="text-[#ECD06F]">({entries.length})</span>
+                방명록 <span className="text-[#E6B800]">({entries.length})</span>
               </h3>
 
               {isLoading ? (
                 <div className="space-y-3">
                   {[1, 2, 3].map((i) => (
-                    <Card key={i} className="animate-pulse bg-card border-border">
+                    <Card key={i} className="animate-pulse bg-white border-gray-100">
                       <CardContent className="p-4">
                         <div className="flex gap-3">
-                          <div className="w-10 h-10 bg-muted rounded-full" />
+                          <div className="w-10 h-10 bg-gray-100 rounded-full" />
                           <div className="flex-1 space-y-2">
-                            <div className="h-4 bg-muted rounded w-1/3" />
-                            <div className="h-3 bg-muted rounded w-full" />
-                            <div className="h-3 bg-muted rounded w-2/3" />
+                            <div className="h-4 bg-gray-100 rounded w-1/3" />
+                            <div className="h-3 bg-gray-100 rounded w-full" />
+                            <div className="h-3 bg-gray-100 rounded w-2/3" />
                           </div>
                         </div>
                       </CardContent>
@@ -391,7 +391,7 @@ function ContactSection({
                   ))}
                 </div>
               ) : entries.length === 0 ? (
-                <Card className="text-center py-12 bg-card border-border">
+                <Card className="text-center py-12 bg-white border-gray-100 shadow-sm">
                   <CardContent>
                     <p className="text-muted-foreground">
                       아직 작성된 방명록이 없습니다.
@@ -410,10 +410,10 @@ function ContactSection({
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ delay: 0.5 + index * 0.1 }}
                     >
-                      <Card className="bg-card border-border hover:border-[#ECD06F]/30 transition-all duration-300">
+                      <Card className="bg-white border-gray-100 hover:border-[#A8D8EA] hover:shadow-md transition-all duration-300">
                         <CardContent className="p-4">
                           <div className="flex gap-3">
-                            <Avatar className={`${getAvatarColor(entry.author_name)} text-background`}>
+                            <Avatar className={`${getAvatarColor(entry.author_name)} text-[#333]`}>
                               <AvatarFallback className="bg-transparent font-semibold">
                                 {getInitial(entry.author_name)}
                               </AvatarFallback>
@@ -425,7 +425,7 @@ function ContactSection({
                                   {entry.author_name}
                                 </span>
                                 {entry.organization && (
-                                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-gray-100 px-2 py-0.5 rounded-full">
                                     <Building2 className="h-3 w-3" />
                                     {entry.organization}
                                   </span>
@@ -441,7 +441,7 @@ function ContactSection({
                                 {entry.is_email_public && entry.email && (
                                   <a
                                     href={`mailto:${entry.email}`}
-                                    className="inline-flex items-center gap-1 text-[#2779a7] hover:underline"
+                                    className="inline-flex items-center gap-1 text-[#5BA4C9] hover:underline"
                                   >
                                     <Mail className="h-3 w-3" />
                                     {entry.email}

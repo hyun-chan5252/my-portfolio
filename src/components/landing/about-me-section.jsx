@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { User, Code, Sparkles, BookOpen } from 'lucide-react';
+import { Code, Sparkles, Figma, BookOpen } from 'lucide-react';
 
 /**
  * AboutMeSection 컴포넌트
@@ -46,17 +46,17 @@ function AboutMeSection() {
   };
 
   const highlights = [
-    { icon: Code, text: 'Coding', color: '#2779a7' },
-    { icon: Sparkles, text: 'AI', color: '#ECD06F' },
-    { icon: User, text: 'Figma', color: '#ECD06F' },
-    { icon: BookOpen, text: '배움', color: '#2779a7' }
+    { icon: Code, text: 'Coding', color: '#5BA4C9' },
+    { icon: Sparkles, text: 'AI', color: '#E6B800' },
+    { icon: Figma, text: 'Figma', color: '#E6B800' },
+    { icon: BookOpen, text: '배움', color: '#5BA4C9' }
   ];
 
   return (
     <section
       id="about"
       ref={ref}
-      className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted/30"
+      className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-white to-[#F8FCFD]"
     >
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
@@ -73,34 +73,24 @@ function AboutMeSection() {
             <div className="relative">
               {/* 장식 요소들 */}
               <motion.div
-                className="absolute -top-4 -left-4 w-full h-full border-2 border-[#ECD06F]/30 rounded-2xl"
+                className="absolute -top-4 -left-4 w-full h-full border-2 border-[#FFF3B0] rounded-2xl"
                 animate={{ rotate: [0, 2, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
               />
               <motion.div
-                className="absolute -bottom-4 -right-4 w-full h-full border-2 border-[#2779a7]/30 rounded-2xl"
+                className="absolute -bottom-4 -right-4 w-full h-full border-2 border-[#A8D8EA] rounded-2xl"
                 animate={{ rotate: [0, -2, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
               />
 
               {/* 프로필 이미지 컨테이너 */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#ECD06F]/20 to-[#2779a7]/20 rounded-2xl overflow-hidden">
-                {/* 플레이스홀더 아바타 */}
-                <div className="absolute inset-0 flex items-center justify-center bg-muted">
-                  <div className="text-center">
-                    <div className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#ECD06F] to-[#2779a7] flex items-center justify-center">
-                      <User className="w-12 h-12 md:w-16 md:h-16 text-background" />
-                    </div>
-                    <p className="text-muted-foreground text-sm">프로필 이미지</p>
-                  </div>
-                </div>
-
-                {/* 실제 이미지가 있을 경우 아래 코드 활성화 */}
-                {/* <img
+              <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#FFF3B0]/30 to-[#A8D8EA]/30 rounded-2xl overflow-hidden shadow-xl">
+                {/* 실제 프로필 이미지 */}
+                <img
                   src="/profile.jpg"
                   alt="프로필 이미지"
                   className="w-full h-full object-cover"
-                /> */}
+                />
               </div>
 
               {/* 플로팅 뱃지들 */}
@@ -115,7 +105,7 @@ function AboutMeSection() {
                 return (
                   <motion.div
                     key={item.text}
-                    className={`absolute ${positions[index]} hidden md:flex items-center gap-2 px-3 py-2 bg-card rounded-lg shadow-lg border border-border`}
+                    className={`absolute ${positions[index]} hidden md:flex items-center gap-2 px-3 py-2 bg-white rounded-lg shadow-lg border border-gray-100`}
                     animate={{ y: [0, -8, 0] }}
                     transition={{
                       duration: 3,
@@ -140,7 +130,7 @@ function AboutMeSection() {
             {/* 섹션 타이틀 */}
             <div>
               <motion.p
-                className="text-[#2779a7] text-sm font-medium tracking-widest uppercase mb-2"
+                className="text-[#5BA4C9] text-sm font-medium tracking-widest uppercase mb-2"
                 variants={rightVariants}
               >
                 About Me
@@ -150,7 +140,7 @@ function AboutMeSection() {
                 variants={rightVariants}
               >
                 안녕하세요,{' '}
-                <span className="text-[#ECD06F]">신입 UX/UI 디자이너</span>
+                <span className="text-[#E6B800]">신입 UX/UI 디자이너</span>
                 입니다.
               </motion.h2>
             </div>
@@ -186,7 +176,7 @@ function AboutMeSection() {
               {['UX/UI 디자인', '프론트엔드', 'AI 활용', '프로토타이핑'].map((tag, index) => (
                 <motion.span
                   key={tag}
-                  className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium text-foreground hover:border-[#ECD06F] hover:text-[#ECD06F] transition-all duration-300 cursor-default"
+                  className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-medium text-foreground hover:border-[#FFF3B0] hover:bg-[#FFF3B0]/20 transition-all duration-300 cursor-default shadow-sm"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}

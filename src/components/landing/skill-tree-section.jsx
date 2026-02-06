@@ -54,7 +54,7 @@ function SkillTreeSection() {
     <section
       id="skills"
       ref={ref}
-      className="w-full py-16 md:py-24 lg:py-32 bg-muted/30"
+      className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-b from-[#F8FCFD] to-[#FFF9E6]"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* 섹션 헤더 */}
@@ -64,11 +64,11 @@ function SkillTreeSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-[#2779a7] text-sm font-medium tracking-widest uppercase mb-2">
+          <p className="text-[#5BA4C9] text-sm font-medium tracking-widest uppercase mb-2">
             Skills
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            디자인과 <span className="text-[#ECD06F]">코딩</span>을 함께
+            디자인과 <span className="text-[#E6B800]">코딩</span>을 함께
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             UX/UI 디자인 역량과 프론트엔드 개발 능력을 갖춰 디자인부터 구현까지 가능합니다.
@@ -84,13 +84,13 @@ function SkillTreeSection() {
         >
           {/* Design Skills 카드 */}
           <motion.div
-            className="bg-card rounded-2xl p-6 md:p-8 border border-border hover:border-[#ECD06F]/50 transition-all duration-300"
+            className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:border-[#FFF3B0] transition-all duration-300"
             variants={itemVariants}
-            whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(236, 208, 111, 0.1)' }}
+            whileHover={{ y: -5 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-[#ECD06F]/10 flex items-center justify-center">
-                <Palette className="w-6 h-6 text-[#ECD06F]" />
+              <div className="w-12 h-12 rounded-xl bg-[#FFF3B0] flex items-center justify-center">
+                <Palette className="w-6 h-6 text-[#E6B800]" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground">Design Skills</h3>
@@ -111,14 +111,14 @@ function SkillTreeSection() {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-[#ECD06F] transition-colors" />
+                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-[#E6B800] transition-colors" />
                         <span className="text-sm font-medium text-foreground">{skill.name}</span>
                       </div>
-                      <span className="text-sm text-[#ECD06F] font-semibold">{skill.level}%</span>
+                      <span className="text-sm text-[#E6B800] font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-[#ECD06F] to-[#ECD06F]/70 rounded-full"
+                        className="h-full bg-gradient-to-r from-[#FFF3B0] to-[#FFE566] rounded-full"
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                         transition={{ duration: 1, delay: 0.5 + index * 0.15, ease: 'easeOut' }}
@@ -132,13 +132,13 @@ function SkillTreeSection() {
 
           {/* Coding Skills 카드 */}
           <motion.div
-            className="bg-card rounded-2xl p-6 md:p-8 border border-border hover:border-[#2779a7]/50 transition-all duration-300"
+            className="bg-white rounded-2xl p-6 md:p-8 border border-gray-100 shadow-lg hover:shadow-xl hover:border-[#A8D8EA] transition-all duration-300"
             variants={itemVariants}
-            whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(39, 121, 167, 0.1)' }}
+            whileHover={{ y: -5 }}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-xl bg-[#2779a7]/10 flex items-center justify-center">
-                <Code className="w-6 h-6 text-[#2779a7]" />
+              <div className="w-12 h-12 rounded-xl bg-[#A8D8EA] flex items-center justify-center">
+                <Code className="w-6 h-6 text-[#5BA4C9]" />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-foreground">Coding Skills</h3>
@@ -159,14 +159,14 @@ function SkillTreeSection() {
                   >
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
-                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-[#2779a7] transition-colors" />
+                        <Icon className="w-4 h-4 text-muted-foreground group-hover:text-[#5BA4C9] transition-colors" />
                         <span className="text-sm font-medium text-foreground">{skill.name}</span>
                       </div>
-                      <span className="text-sm text-[#2779a7] font-semibold">{skill.level}%</span>
+                      <span className="text-sm text-[#5BA4C9] font-semibold">{skill.level}%</span>
                     </div>
-                    <div className="h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-[#2779a7] to-[#2779a7]/70 rounded-full"
+                        className="h-full bg-gradient-to-r from-[#A8D8EA] to-[#7CC4E4] rounded-full"
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                         transition={{ duration: 1, delay: 0.5 + index * 0.15, ease: 'easeOut' }}
@@ -191,7 +191,7 @@ function SkillTreeSection() {
             {['Notion', 'Slack', 'Jira', 'ChatGPT', 'Midjourney', 'After Effects', 'Premiere Pro'].map((tool, index) => (
               <motion.span
                 key={tool}
-                className="px-4 py-2 bg-muted/50 border border-border rounded-full text-xs font-medium text-muted-foreground hover:border-[#ECD06F]/50 hover:text-[#ECD06F] transition-all duration-300 cursor-default"
+                className="px-4 py-2 bg-white border border-gray-200 rounded-full text-xs font-medium text-muted-foreground hover:border-[#A8D8EA] hover:text-[#5BA4C9] hover:bg-[#A8D8EA]/10 transition-all duration-300 cursor-default shadow-sm"
                 whileHover={{ scale: 1.05 }}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
