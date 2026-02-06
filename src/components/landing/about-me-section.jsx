@@ -173,9 +173,9 @@ function AboutMeSection() {
                 className="text-3xl md:text-4xl font-bold text-foreground mb-4"
                 variants={rightVariants}
               >
-                안녕하세요,{' '}
-                <span className="text-[#E6B800]">신입 UX/UI 디자이너</span>
-                입니다.
+                안녕하세요,
+                <br />
+                <span className="text-[#E6B800]">신입 UX/UI 디자이너</span>입니다.
               </motion.h2>
             </div>
 
