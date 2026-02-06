@@ -2,33 +2,39 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Palette, Code, Figma, PenTool, ImageIcon, Layout, FileCode, GitBranch, Globe } from 'lucide-react';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 /**
  * SkillTreeSection 컴포넌트
  *
  * Props:
  * 없음 - Skill Tree 섹션 표시 컴포넌트
+ * Context API를 통해 스킬 데이터를 받아옴
  *
  * Example usage:
  * <SkillTreeSection />
  */
+
+// 아이콘 매핑 객체
+const iconMap = {
+  Figma: Figma,
+  PenTool: PenTool,
+  ImageIcon: ImageIcon,
+  Layout: Layout,
+  Globe: Globe,
+  FileCode: FileCode,
+  Code: Code,
+  GitBranch: GitBranch
+};
+
 function SkillTreeSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { getSkillsByCategory } = usePortfolio();
 
-  const designSkills = [
-    { name: 'Figma', level: 90, icon: Figma },
-    { name: 'Illustrator', level: 85, icon: PenTool },
-    { name: 'Photoshop', level: 80, icon: ImageIcon },
-    { name: 'Adobe XD', level: 75, icon: Layout }
-  ];
-
-  const codingSkills = [
-    { name: 'HTML/CSS', level: 85, icon: Globe },
-    { name: 'JavaScript', level: 70, icon: FileCode },
-    { name: 'React', level: 65, icon: Code },
-    { name: 'Git', level: 60, icon: GitBranch }
-  ];
+  // Context에서 카테고리별 스킬 가져오기
+  const designSkills = getSkillsByCategory['Design'] || [];
+  const codingSkills = getSkillsByCategory['Frontend'] || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -100,10 +106,10 @@ function SkillTreeSection() {
 
             <div className="space-y-5">
               {designSkills.map((skill, index) => {
-                const Icon = skill.icon;
+                const Icon = iconMap[skill.icon] || Palette;
                 return (
                   <motion.div
-                    key={skill.name}
+                    key={skill.id}
                     className="group"
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -148,10 +154,10 @@ function SkillTreeSection() {
 
             <div className="space-y-5">
               {codingSkills.map((skill, index) => {
-                const Icon = skill.icon;
+                const Icon = iconMap[skill.icon] || Code;
                 return (
                   <motion.div
-                    key={skill.name}
+                    key={skill.id}
                     className="group"
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}

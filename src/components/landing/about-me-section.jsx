@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code, Sparkles, Figma, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code, Sparkles, Figma, BookOpen, ArrowRight } from 'lucide-react';
+import { usePortfolio } from '../../context/PortfolioContext';
 
 /**
  * AboutMeSection 컴포넌트
  *
  * Props:
  * 없음 - About Me 섹션 표시 컴포넌트
+ * Context API를 통해 데이터를 받아옴
  *
  * Example usage:
  * <AboutMeSection />
@@ -15,6 +18,9 @@ import { Code, Sparkles, Figma, BookOpen } from 'lucide-react';
 function AboutMeSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const { getHomeData } = usePortfolio();
+
+  const { content, skills, basicInfo } = getHomeData;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -52,6 +58,10 @@ function AboutMeSection() {
     { icon: BookOpen, text: '배움', color: '#5BA4C9' }
   ];
 
+  // 첫 번째 섹션 콘텐츠 (나의 개발 스토리) 가져오기
+  const devStory = content.find(item => item.id === 'dev-story');
+  const philosophy = content.find(item => item.id === 'philosophy');
+
   return (
     <section
       id="about"
@@ -65,9 +75,9 @@ function AboutMeSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {/* 왼쪽: 프로필 이미지 */}
+          {/* 왼쪽: 프로필 이미지 + 기본 정보 카드 */}
           <motion.div
-            className="flex justify-center lg:justify-end"
+            className="flex flex-col items-center lg:items-end gap-6"
             variants={leftVariants}
           >
             <div className="relative">
@@ -85,9 +95,8 @@ function AboutMeSection() {
 
               {/* 프로필 이미지 컨테이너 */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 bg-gradient-to-br from-[#FFF3B0]/30 to-[#A8D8EA]/30 rounded-2xl overflow-hidden shadow-xl">
-                {/* 실제 프로필 이미지 */}
                 <img
-                  src="/profile.jpg"
+                  src={basicInfo.photo}
                   alt="프로필 이미지"
                   className="w-full h-full object-cover"
                 />
@@ -120,6 +129,31 @@ function AboutMeSection() {
                 );
               })}
             </div>
+
+            {/* 기본 정보 카드 */}
+            <motion.div
+              className="bg-white rounded-xl p-4 shadow-lg border border-gray-100 w-64 md:w-80"
+              variants={leftVariants}
+            >
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">이름</span>
+                  <span className="font-medium text-foreground">{basicInfo.name}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">학력</span>
+                  <span className="font-medium text-foreground">{basicInfo.education}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">전공</span>
+                  <span className="font-medium text-foreground">{basicInfo.major}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">경력</span>
+                  <span className="font-medium text-[#E6B800]">{basicInfo.experience}</span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* 오른쪽: 자기소개 텍스트 */}
@@ -145,46 +179,60 @@ function AboutMeSection() {
               </motion.h2>
             </div>
 
-            {/* 자기소개 본문 */}
+            {/* 자기소개 본문 - Context에서 가져온 데이터 사용 */}
             <motion.div
               className="text-muted-foreground text-base md:text-lg leading-relaxed space-y-4"
               variants={rightVariants}
             >
-              <p>
-                단순한 그래픽 작업을 넘어, 제품이 구현되는 원리(
-                <span className="highlight-text font-medium text-foreground">Coding</span>
-                )를 이해하고 최신 도구(
-                <span className="highlight-text font-medium text-foreground">AI</span>
-                )를 능숙하게 다루는 신입 디자이너입니다.
-              </p>
-              <p>
-                <span className="highlight-text font-medium text-foreground">Figma</span>
-                로 섬세한 UI를 설계하고, 일러스트와 포토샵으로 풍부한 비주얼을 만들며,
-                AI를 활용해 창의적인 한계를 돌파합니다.
-              </p>
-              <p>
-                <span className="highlight-text font-medium text-foreground">배움</span>
-                에 주저함이 없는 태도로 조직의 디자인 효율을 높이는 데 기여하겠습니다.
-              </p>
+              {devStory && (
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2">{devStory.title}</h3>
+                  <p>{devStory.summary}</p>
+                </div>
+              )}
+              {philosophy && (
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2">{philosophy.title}</h3>
+                  <p>{philosophy.summary}</p>
+                </div>
+              )}
             </motion.div>
 
-            {/* 핵심 키워드 태그 */}
+            {/* 주요 스킬 4개 아이콘 */}
             <motion.div
               className="flex flex-wrap gap-3 pt-4"
               variants={rightVariants}
             >
-              {['UX/UI 디자인', '프론트엔드', 'AI 활용', '프로토타이핑'].map((tag, index) => (
-                <motion.span
-                  key={tag}
-                  className="px-4 py-2 bg-white border border-gray-200 rounded-full text-sm font-medium text-foreground hover:border-[#FFF3B0] hover:bg-[#FFF3B0]/20 transition-all duration-300 cursor-default shadow-sm"
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.id}
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow-sm hover:border-[#FFF3B0] hover:bg-[#FFF3B0]/20 transition-all duration-300"
                   whileHover={{ scale: 1.05 }}
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  {tag}
-                </motion.span>
+                  <span className="text-sm font-medium text-foreground">{skill.name}</span>
+                  <span className="text-xs text-[#E6B800]">{skill.level}%</span>
+                </motion.div>
               ))}
+            </motion.div>
+
+            {/* 더 알아보기 버튼 */}
+            <motion.div
+              variants={rightVariants}
+              className="pt-4"
+            >
+              <Link to="/about">
+                <motion.button
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#FFF3B0] text-[#333] font-semibold rounded-lg hover:bg-[#FFE566] transition-colors shadow-md"
+                  whileHover={{ scale: 1.05, x: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  더 알아보기
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
         </motion.div>
